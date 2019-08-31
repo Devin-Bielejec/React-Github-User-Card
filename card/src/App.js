@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import CardComponent from "./components/CardComponent";
+import NavBarComponent from "./components/NavBarComponent";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -26,10 +28,10 @@ class App extends React.Component {
 
   render() {
     return(
-      <div>
-        <h1>Up Up and Away!</h1>
-        <CardComponent user={this.state.users[0]} />
-      </div>
+      <Router>
+        <NavBarComponent/>
+        {/* <CardComponent user={this.state.users[0]}/> */}
+      </Router>
     )
   }
 }
