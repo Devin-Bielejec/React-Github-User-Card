@@ -1,45 +1,41 @@
 import React, { Component } from "react";
-import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 
 class NavBarComponent extends React.Component {
-    constructor(){
-        super();
-    }
+    state = {}
 
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  
     render() {
-        return(
-            <Sidebar.Pushable as={Segment}>
-                <Sidebar
-                as={Menu}
-                animation='overlay'
-                icon='labeled'
-                inverted
-                vertical
-                visible
-                width='thin'
-                >
-                <Menu.Item as='a'>
-                    <Icon name='user' />
-                    Profile
-                </Menu.Item>
-                <Menu.Item as='a'>
-                    <Icon name='users' />
-                    Followers
-                </Menu.Item>
-                <Menu.Item as='a'>
-                    <Icon name='users' />
-                    Following
-                </Menu.Item>
-                </Sidebar>
+      const { activeItem } = this.state
 
-                <Sidebar.Pusher>
-                <Segment basic>
-                    <Header as='h3'>Application Content</Header>
-                    <Image src='/images/wireframe/paragraph.png' />
-                </Segment>
-                </Sidebar.Pusher>
-            </Sidebar.Pushable>
+        return(
+        <Menu fixed="left" vertical={true} inverted={true} color={"green"} stackable={true} compact={true}>
+            <Menu.Item
+            name='Profile'
+            active={activeItem === 'Profile'}
+            onClick={this.handleItemClick}
+            >
+            Profile
+            </Menu.Item>
+
+            <Menu.Item
+            name='Followers'
+            active={activeItem === 'Followers'}
+            onClick={this.handleItemClick}
+            >
+            Followers
+            </Menu.Item>
+
+            <Menu.Item
+            name='Following'
+            active={activeItem === 'Following'}
+            onClick={this.handleItemClick}
+            >
+            Following
+            </Menu.Item>
+      </Menu>
         )
     }
 }
