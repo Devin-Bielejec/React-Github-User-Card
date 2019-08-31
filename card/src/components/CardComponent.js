@@ -25,7 +25,7 @@ class CardComponent extends React.Component {
     render() {
         {console.log(this.state)}
         return(
-            <Card>
+            <Card fixed={true}>
             <Image src={this.state.user.avatar_url} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{this.state.user.name}</Card.Header>

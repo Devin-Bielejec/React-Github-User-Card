@@ -30,7 +30,8 @@ class App extends React.Component {
     return(
       <Router>
         <NavBarComponent/>
-        {/* <CardComponent user={this.state.users[0]}/> */}
+
+        <Route path="/profile" render={(props) => (<CardComponent {...props} user={this.state.users[0]} />)}/>
       </Router>
     )
   }
