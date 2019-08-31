@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import CardComponent from "./components/CardComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      //We will use users instead of just user so we can map through data
+      //We will set up a basic user first
+      users: [{
+          id: "",
+          name: "Devin",
+          login: "",
+          avatar_url: "",
+          html_url: "",
+          blog: "",
+          location: "",
+          bio: "",
+          followers: 0,
+          following: 0
+      }]
+    }
+  }
+
+  render() {
+    return(
+      <div>
+        <h1>Up Up and Away!</h1>
+        <CardComponent user={this.state.users[0]} />
+      </div>
+    )
+  }
 }
 
 export default App;
