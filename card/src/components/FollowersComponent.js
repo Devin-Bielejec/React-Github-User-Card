@@ -4,24 +4,18 @@ import CardComponent from "./CardComponent";
 
 class FollowersComponent extends React.Component {
     constructor(props) {
+        console.log(props);
         super();
+        this.state = {
+            followers: props.followers
+        }
         }
     
-    componentDidMount() {
-        axios.get(this.state.user.followers_url)
-        .then(res => {
-            console.log(res.data);
-            this.setState({users: res.data})
-        })
-        .catch(err => console.log(`Error: ${err}`))
-    }
-    
-        
-
     render() {
+        {console.log("Render", this.state)}
         return(
             <div>
-                {this.state.users.map(follower => <CardComponent user={follower}/>)}
+                {this.state.followers.map(follower => <CardComponent user={follower}/>)}
             </div>
         )
     }    

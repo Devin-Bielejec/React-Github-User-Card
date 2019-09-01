@@ -25,7 +25,30 @@ class App extends React.Component {
           followers: 0,
           following: 0
       },
-      users: []
+      followers: [{
+        id: "",
+        name: "Devin",
+        login: "",
+        avatar_url: "",
+        html_url: "",
+        blog: "",
+        location: "",
+        bio: "",
+        followers: 0,
+        following: 0
+    }],
+      following: [{
+        id: "",
+        name: "Devin",
+        login: "",
+        avatar_url: "",
+        html_url: "",
+        blog: "",
+        location: "",
+        bio: "",
+        followers: 0,
+        following: 0
+    }]
     }
   }
 
@@ -33,9 +56,14 @@ class App extends React.Component {
     //axios call
     axios.get("https://api.github.com/users/Devin-Bielejec")
     .then(res => {
-        console.log(res);
-        console.log(res.data);
+        console.log("First get",res);
         this.setState({user: res.data});
+        return axios.get(this.state.user.followers_url);
+    })
+    .then(res => {
+      console.log("Second get", res);
+      this.setState({user: this.state.user, followers: res.data});
+      console.log(this.state);
     })
     .catch(err => console.log(`Error: ${err}`))
 }
@@ -46,7 +74,7 @@ class App extends React.Component {
         <NavBarComponent/>
 
         <Route path="/profile" render={(props) => (<CardComponent user={this.state.user}/>)}/>
-        <Route path="/followers" render={(props) => (<FollowersComponent users={this.state.users}/>)}/>
+        <Route path="/followers" render={(props) => (<FollowersComponent followers={this.state.followers}/>)}/>
       </Router>
     )
   }
