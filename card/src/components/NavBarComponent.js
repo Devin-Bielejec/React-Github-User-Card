@@ -33,13 +33,13 @@ class NavBarComponent extends React.Component {
             </Menu.Item>
 
             <Menu.Item
-            name='Following'
-            active={activeItem === 'Following'}
+            name='Change Profile'
+            active={activeItem === 'Change Profile'}
             onClick={this.handleItemClick}
-            to={"/following"}
+            to={"/changeProfile"}
             as={NavLink}
             >
-            Following
+            Change Profile
             </Menu.Item>
       </Menu>
         )

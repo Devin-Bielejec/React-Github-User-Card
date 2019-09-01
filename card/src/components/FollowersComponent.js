@@ -13,7 +13,7 @@ class FollowersComponent extends React.Component {
 
     componentDidMount() {
         //axios call
-        axios.get("https://api.github.com/users/Devin-Bielejec")
+        axios.get(`https://api.github.com/users/${this.state.user.login}`)
         .then(res => {
             this.setState({user: res.data});
             return axios.get(this.state.user.followers_url);
