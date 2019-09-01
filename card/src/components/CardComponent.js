@@ -4,23 +4,13 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import axios from "axios";
 
 class CardComponent extends React.Component {
-    constructor(props) {
+    //After this card component render, reset the the state to user etc, get data etc
+    constructor(props){
         super();
         this.state = {
             user: props.user
         }
     }
-    //After this card component render, reset the the state to user etc, get data etc
-    componentDidMount() {
-        //axios call
-        axios.get("https://api.github.com/users/Devin-Bielejec")
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-            this.setState({user: res.data});
-        })
-        .catch(err => console.log(`Error: ${err}`))
-    }   
 
     render() {
         {console.log(this.state)}
