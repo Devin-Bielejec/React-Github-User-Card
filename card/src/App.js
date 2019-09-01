@@ -16,7 +16,7 @@ class App extends React.Component {
       user: {
           id: "",
           name: "Devin",
-          login: "",
+          login: "Devin-Bielejec",
           avatar_url: "",
           html_url: "",
           blog: "",
@@ -28,7 +28,7 @@ class App extends React.Component {
       followers: [{
         id: "",
         name: "Devin",
-        login: "",
+        login: "Devin-Bielejec",
         avatar_url: "",
         html_url: "",
         blog: "",
@@ -40,7 +40,7 @@ class App extends React.Component {
       following: [{
         id: "",
         name: "Devin",
-        login: "",
+        login: "Devin-Bielejec",
         avatar_url: "",
         html_url: "",
         blog: "",
@@ -52,28 +52,12 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    //axios call
-    axios.get("https://api.github.com/users/Devin-Bielejec")
-    .then(res => {
-        console.log("First get",res);
-        this.setState({user: res.data});
-        return axios.get(this.state.user.followers_url);
-    })
-    .then(res => {
-      console.log("Second get", res);
-      this.setState({user: this.state.user, followers: res.data});
-      console.log(this.state);
-    })
-    .catch(err => console.log(`Error: ${err}`))
-}
-
   render() {
     return(
       <Router>
         <NavBarComponent/>
 
-        <Route path="/profile" render={(props) => (<CardComponent user={this.state.user}/>)}/>
+        <Route exact path="/" render={(props) => (<CardComponent user={this.state.user}/>)}/>
         <Route path="/followers" render={(props) => (<FollowersComponent followers={this.state.followers}/>)}/>
       </Router>
     )

@@ -10,12 +10,28 @@ class FollowersComponent extends React.Component {
             followers: props.followers
         }
         }
+
+    componentDidMount() {
+        //axios call
+        axios.get("https://api.github.com/users/Devin-Bielejec")
+        .then(res => {
+            this.setState({user: res.data});
+            return axios.get(this.state.user.followers_url);
+        })
+        .then(res => {
+            this.setState({user: this.state.user, followers: res.data});
+        })
+        .catch(err => console.log(`Error: ${err}`))
+    }
     
     render() {
         {console.log("Render", this.state)}
         return(
             <div>
-                {this.state.followers.map(follower => <CardComponent user={follower}/>)}
+                {this.state.followers.map(follower => {
+                {console.log(follower)}
+                return <CardComponent user={follower}/>
+                })}
             </div>
         )
     }    

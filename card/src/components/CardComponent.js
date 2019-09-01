@@ -12,6 +12,22 @@ class CardComponent extends React.Component {
         }
     }
 
+    componentDidMount() {
+        //axios call
+        axios.get(`https://api.github.com/users/${this.state.user.login}`)
+        .then(res => {
+            console.log("First get",res);
+            this.setState({user: res.data});
+            return axios.get(this.state.user.followers_url);
+        })
+        .then(res => {
+          console.log("Second get", res);
+          this.setState({user: this.state.user, followers: res.data});
+          console.log(this.state);
+        })
+        .catch(err => console.log(`Error: ${err}`))
+    }
+
     render() {
         {console.log(this.state)}
         return(

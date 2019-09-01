@@ -16,7 +16,7 @@ class NavBarComponent extends React.Component {
             name='Profile'
             active={activeItem === 'Profile'}
             onClick={this.handleItemClick}
-            to={"/profile"}
+            to={"/"}
             as={NavLink}
             >
             Profile
